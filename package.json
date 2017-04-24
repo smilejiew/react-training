@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server",
-    "lint": "eslint ./src/client/app",
+    "starth": "webpack-dev-server --hot",
+    "lint": "./node_modules/.bin/eslint ./src/client/app",
     "lint:fix": "npm run lint -- --fix"
   },
   "repository": {

@@ -13,6 +13,16 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 
 var config = {
     entry: APP_DIR + '/index.jsx',
+    // ref: http://stackoverflow.com/questions/33272967/how-to-make-the-webpack-dev-server-run-on-port-80-and-on-0-0-0-0-to-make-it-publ
+    //      https://webpack.github.io/docs/webpack-dev-server.html
+    // entry: [
+    //     'webpack-dev-server/client?http://devthai4.webon.net:8082',
+    //     APP_DIR + '/index.jsx'
+    // ],
+    // devServer: {
+    //     host: 'devthai4.webon.net',
+    //     port: 8082,
+    // },
     output: {
         path: BUILD_DIR,
         filename: 'bundle.js'
