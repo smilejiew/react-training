@@ -1,4 +1,4 @@
-import ProductActions from '../actions/ProductActions.jsx';
+import BasketActions from '../actions/BasketActions.jsx';
 
 const mockData = [
     {id: 1, price: 49, stock: 0, name: 'Football'},
@@ -37,9 +37,9 @@ var WebshopSource = {
                 return null;
             },
 
-            success: ProductActions.updateProducts,
-            error: ProductActions.fetchProductsFailed,
-            loading: ProductActions.fetchProducts
+            success: BasketActions.updateProducts,
+            error: BasketActions.fetchProductsFailed,
+            loading: BasketActions.fetchProducts
         }
     }
 };

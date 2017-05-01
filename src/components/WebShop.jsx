@@ -1,84 +1,55 @@
 import React from 'react';
+import alt from '../alt.jsx';
+
+import WebStore from '../stores/WebStore.jsx';
 
 import MiniBasket from './MiniBasket.jsx';
 import ProductList from './ProductList.jsx';
 
-export default class WebShop extends React.Component {
+export default class App extends React.Component {
 
     constructor(props) {
         super(props);
+        this.state = WebStore.getState();
 
-        let stock = {};
-        this.props.products.forEach(function (product) {
-            stock[product.id] = {stock: product.stock, added: 0};
-        });
-
-        this.state = {
-            stock: stock,
-            basketLine: []
-        };
-
-        this.handleOnAddProduct = this.handleOnAddProduct.bind(this);
-        this.handleOnDeleteProduct = this.handleOnDeleteProduct.bind(this);
+        this.onChange = this.onChange.bind(this);
     }
 
-    handleOnAddProduct(product) {
-        let stock = this.state.stock;
-        if (stock[product.id].stock <= stock[product.id].added) {
-            return;
-        }
-
-        stock[product.id].added = stock[product.id].added + 1;
-
-        let basket = this.state.basketLine;
-        let isExist = 0;
-
-        basket.forEach(function (basketLine) {
-            if (basketLine.id === product.id) {
-                basketLine.quantity = basketLine.quantity + 1;
-
-                isExist = 1;
-            }
-        });
-
-        if (!isExist) {
-            product.quantity = 1;
-            basket.push(product);
-        }
-
-        this.setState({
-            basketLine: basket,
-            stock: stock
-        });
+    componentDidMount() {
+        WebStore.listen(this.onChange);
+        WebStore.fetchProducts();
     }
 
-    handleOnDeleteProduct(product) {
-        let basket = this.state.basketLine;
-        let stock = this.state.stock;
+    componentWillUnmount() {
+        WebStore.listen(this.onChange);
+    }
 
-        basket.forEach(function (basketLine, i) {
-            if (basketLine.id === product.id) {
-                basket.splice(i, 1);
-                stock[product.id].added = 0;
-            }
-        });
-
-        this.setState({
-            basketLine: basket,
-            stock: stock
-        });
+    onChange(state) {
+        this.setState(state);
     }
 
     render() {
+
+        if (this.state.errorMessage) {
+            return (
+                <div>Something is wrong
+                    <div>{this.state.errorMessage}</div>
+                </div>
+            );
+        }
+
+        if (!this.state.products.length) {
+            return (
+                <div>
+                    No Products
+                </div>
+            )
+        }
+
         return (
             <div>
-                <MiniBasket
-                    basketLine={this.state.basketLine}
-                    handleOnDeleteProduct={this.handleOnDeleteProduct} />
-                <ProductList
-                    products={this.props.products}
-                    stock={this.state.stock}
-                    handleOnAddProduct={this.handleOnAddProduct} />
+                <MiniBasket />
+                <ProductList />
             </div>
         );
     }

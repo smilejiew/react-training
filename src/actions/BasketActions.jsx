@@ -1,6 +1,6 @@
 import alt from '../alt.jsx';
 
-class ProductActions {
+class BasketActions {
 
     fetchProducts() {
         return [];
@@ -13,6 +13,14 @@ class ProductActions {
     fetchProductsFailed(errorMessage) {
         return errorMessage;
     }
+
+    addBasket(product) {
+        return product;
+    }
+
+    deleteBasket(product) {
+        return product;
+    }
 }
 
-export default alt.createActions(ProductActions);
+export default alt.createActions(BasketActions);

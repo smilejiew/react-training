@@ -1,5 +1,7 @@
 import React from 'react';
 
+import BasketActions from '../actions/BasketActions.jsx';
+
 export default class BasketLine extends React.Component {
 
     constructor(props) {
@@ -9,7 +11,7 @@ export default class BasketLine extends React.Component {
 
     handleOnDeleteProduct(e) {
         e.preventDefault();
-        this.props.handleOnDeleteProduct(this.props.basketLine);
+        BasketActions.deleteBasket(this.props.basketLine);
     }
 
     render() {
@@ -18,7 +20,7 @@ export default class BasketLine extends React.Component {
                 <td>{this.props.basketLine.quantity}</td>
                 <td>{this.props.basketLine.name}</td>
                 <td>${this.props.basketLine.price}</td>
-                <td><a href="#" onClick={this.handleOnDeleteProduct}>x</a></td>
+                <td><a href="#" onClick={this.handleOnDeleteProduct} >x</a></td>
             </tr>
         );
     }

@@ -1,20 +1,40 @@
 import React from 'react';
 
 import ProductCard from './ProductCard.jsx';
+import WebStore from '../stores/WebStore.jsx';
 
 export default class ProductList extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = WebStore.getState();
+
+        this.onChange = this.onChange.bind(this);
+    }
+
+    componentDidMount() {
+        WebStore.listen(this.onChange);
+    }
+
+    componentWillUnmount() {
+        WebStore.listen(this.onChange);
+    }
+
+    onChange(state) {
+        this.setState(state);
+    }
+
     render() {
         let rows = [];
-        let handling = this.props.handleOnAddProduct;
-        let stock = this.props.stock;
+        let allStock = this.state.stock;
 
-        this.props.products.forEach(function (product) {
+        this.state.products.forEach(function (product) {
+
+            let stock = product.stock - allStock[product.id].added;
             rows.push(<ProductCard
                 key={product.id}
                 product={product}
-                stock={stock[product.id]}
-                handleOnAddProduct={handling} />);
+                stock={stock} />);
         });
 
         return (
