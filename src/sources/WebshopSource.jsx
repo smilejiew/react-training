@@ -1,4 +1,5 @@
 import BasketActions from '../actions/BasketActions.jsx';
+//import axios from 'axios';
 
 const mockData = [
     {id: 1, price: 49, stock: 0, name: 'Football'},
@@ -12,6 +13,25 @@ const mockData = [
 ];
 
 var WebshopSource = {
+
+//    testFetchData() {
+//
+//        // http://alt.js.org/docs/async/
+//        return {
+//            remote() {
+//                return axios.get('http://shopname.myshopify.com/products.json');
+//                //return axios.get('https://jsonplaceholder.typicode.com/posts');
+//            },
+//
+//            local() {
+//                // Never check locally, always fetch remotely.
+//                return null;
+//            },
+//
+//            success: BasketActions.externalSource,
+//            error: BasketActions.externalSourceError
+//        }
+//    }
 
     fetchProducts() {
         return {

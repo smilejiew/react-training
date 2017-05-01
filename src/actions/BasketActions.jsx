@@ -2,6 +2,14 @@ import alt from '../alt.jsx';
 
 class BasketActions {
 
+//    externalSource(externalSource) {
+//        return externalSource;
+//    }
+//
+//    externalSourceError(errorMessage) {
+//        return errorMessage;
+//    }
+
     fetchProducts() {
         return [];
     }

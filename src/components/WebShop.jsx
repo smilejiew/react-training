@@ -18,6 +18,7 @@ export default class App extends React.Component {
     componentDidMount() {
         WebStore.listen(this.onChange);
         WebStore.fetchProducts();
+//        WebStore.testFetchData();
     }
 
     componentWillUnmount() {

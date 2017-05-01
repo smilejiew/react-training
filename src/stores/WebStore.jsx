@@ -11,6 +11,9 @@ class WebStore {
         this.errorMessage = null;
 
         this.bindListeners({
+//            handleExternalSource: BasketActions.EXTERNAL_SOURCE,
+//            handleExternalSourceError: BasketActions.EXTERNAL_SOURCE_ERROR,
+
             handleUpdateProducts: BasketActions.UPDATE_PRODUCTS,
             handleFetchProducts: BasketActions.FETCH_PRODUCTS,
             handleFetchProductsFailed: BasketActions.FETCH_PRODUCTS_FAILED,
@@ -20,6 +23,16 @@ class WebStore {
 
         this.exportAsync(WebshopSource);
     }
+
+
+//    handleExternalSource(externalSource) {
+//        console.log(externalSource);
+//
+//    }
+//
+//    handleExternalSourceError(errorMessage) {
+//        console.log(errorMessage);
+//    }
 
     handleUpdateProducts(products) {
         this.products = products;
